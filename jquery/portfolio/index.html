@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Include jQuery Mobile CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.min.css" />
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include jQuery Mobile JS -->
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile.min.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .page-header, .page-footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .page-header a, .page-footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .page-header a:hover, .page-footer a:hover {
+            background-color: #444;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: #444;
+            border-radius: 5px;
+        }
+
+        /* Content Styles */
+        .content {
+            padding: 70px 10px; /* Top padding to prevent overlap with the navbar */
+        }
+
+        .content h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Profile Image Styling */
+        .profile-img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #333;
+            object-fit: cover;
+        }
+
+        /* Skills List Styling */
+        .skills-list, .projects-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .skills-list li, .projects-list li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Hover Effect on Skills and Projects */
+        .skills-list li:hover, .projects-list li:hover {
+            background-color: #f1f1f1;
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        /* Color Effect for Project Items */
+        .projects-list li {
+            background-color: #fafafa;
+        }
+
+        .projects-list li:hover {
+            background-color: #e0f7fa;
+            color: #00796b;
+        }
+
+        /* Footer Styling */
+        .footer-content {
+            padding: 20px;
+        }
+
+        .footer-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-content a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Fixed Navbar -->
+<div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+</div>
+
+<!-- Home Page -->
+<div data-role="page" id="home">
+    <div data-role="header">
+        <h1>Welcome to My Portfolio</h1>
+    </div>
+
+    <div role="main" class="ui-content content">
+        <h2>Hello, I'm [Your Name]</h2>
+        <p>Welcome to my personal portfolio. You can learn more about me, see my projects, view my skills, and contact me here!</p>
+    </div>
+</div>
+
+<!-- About Me Page -->
+<div data-role="page" id="about">
+    <div data-role="header">
+        <h1>About Me</h1>
+    </div>
+
+    <div role="main" class="ui-content content">
+        <h2>Who Am I?</h2>
+        <img src="your-profile-image.jpg" alt="Your Profile" class="profile-img">
+        <p>
+            I'm [Your Name], a passionate developer with experience in web development, including front-end and back-end technologies.
+            I love creating useful and engaging user experiences. In my free time, I enjoy coding, learning new technologies, and working on personal projects.
+        </p>
+    </div>
+</div>
+
+<!-- Projects Page -->
+<div data-role="page" id="projects">
+    <div data-role="header">
+        <h1>My Projects</h1>
+    </div>
+
+    <div role="main" class="ui-content content">
+        <h2>Projects I've Worked On</h2>
+        <ul class="projects-list">
+            <li>
+                <h3>Project 1</h3>
+                <p>A short description of Project 1. Technologies used: HTML, CSS, JavaScript.</p>
+            </li>
+            <li>
+                <h3>Project 2</h3>
+                <p>A short description of Project 2. Technologies used: React, Node.js, MongoDB.</p>
+            </li>
+            <li>
+                <h3>Project 3</h3>
+                <p>A short description of Project 3. Technologies used: Python, Django, PostgreSQL.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Skills Page -->
+<div data-role="page" id="skills">
+    <div data-role="header">
+        <h1>Skills</h1>
+    </div>
+
+    <div role="main" class="ui-content content">
+        <h2>My Technical Skills</h2>
+        <ul class="skills-list">
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Angular</li>
+            <li>Node.js, Express</li>
+            <li>Python, Django</li>
+            <li>MongoDB, PostgreSQL</li>
+            <li>Git, GitHub</li>
+            <li>Responsive Design, Web Performance</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Contact Info Page -->
+<div data-role="page" id="contact">
+    <div data-role="header">
+        <h1>Contact Info</h1>
+    </div>
+
+    <div role="main" class="ui-content content">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out to me if you have any questions or want to collaborate on a project!</p>
+        <div class="footer-content">
+            <ul>
+                <li>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a></li>
+                <li>GitHub: <a href="https://github.com/yourusername" target="_blank">GitHub Profile</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Fixed Footer -->
+<div class="page-footer">
+    <p>© 2025 [Your Name]. All rights reserved.</p>
+</div>
+
+</body>
+</html>

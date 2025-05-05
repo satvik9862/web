@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page" id="home">
+        <div data-role="header">
+            <h1>PICT PUNE</h1>
+        </div>
+        <div data-role="content">
+            <p>Welcome</p>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#about" data-icon="info">About</a></li>
+                    <li><a href="#courses" data-icon="grid">Courses</a></li>
+                    <li><a href="#departments" data-icon="bullets">Departments</a></li>
+                    <li><a href="#contacts" data-icon="phone">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="about">
+        <div data-role="header">
+            <h1>ABOUT US</h1>
+            <a href="#home" data-icon="home">Home</a>
+        </div>
+
+        <div data-role="content">
+            <p>pict established in 1983</p>
+        </div>
+    </div>
+    <div data-role="page" id="courses">
+        <div data-role="header">]
+            <h1>Courses</h1>
+            <a href="#home" data-icon="home"></a>
+        </div>
+        <div data-role="content">
+            <div data-role="collapsible">
+                <h3>Undergraduate</h3>
+                <ul>
+                    <li>B.E. Computer Engineering</li>
+                    <li>B.E. Information Technology</li>
+                    <li>B.E. Electronics & Telecommunication</li>
+                </ul>
+            </div>
+            <div data-role="collapsible">
+                <h3>Postgraduate</h3>
+                <ul>
+                    <li>B.E. Computer Engineering</li>
+                    <li>B.E. Information Technology</li>
+                    <li>B.E. Electronics & Telecommunication</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div data-role="page" id="departments">
+        <div data-role="header">
+            <h1>Departments</h1>
+            <a href="#home" data-icon="home">home</a>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true">
+                <li>Computer Engineering</li>
+                <li>Information Technology</li>
+                <li>Electronics & Telecommunication</li>
+                <li>Applied Science</li>
+              </ul>
+        </div>
+    </div>
+</body>
+</html>

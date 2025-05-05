@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body { font-family: Arial; }
+    li { margin-bottom: 10px; }
+    input[type="text"] { width: 200px; }
+    button { margin-left: 5px; }
+  </style>
+</head>
+<body>
+  <h2>To-Do List (AJAX)</h2>
+  <input id="taskInput" type="text" placeholder="Add new task" />
+  <button onclick="addTask()">Add</button>
+  <ul id="taskList"></ul>
+
+  <script>
+    const API = 'http://localhost:3000/task';
+
+    // Load tasks
+    function loadTasks() {
+      fetch(API)
+        .then(res => res.json())
+        .then(tasks => {
+          const list = document.getElementById('taskList');
+          list.innerHTML = '';
+          tasks.forEach(task => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+              <span>${task.text}</span>
+              <button onclick="deleteTask(${task.id})">Delete</button>
+              <button onclick="editTask(${task.id}, '${task.text}')">Edit</button>
+            `;
+            list.appendChild(li);
+          });
+        });
+    }
+
+    // Add task
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text })
+      })
+      .then(() => {
+        input.value = '';
+        loadTasks();
+      });
+    }
+
+    // Delete task
+    function deleteTask(id) {
+      fetch(`${API}/${id}`, { method: 'DELETE' })
+        .then(() => loadTasks());
+    }
+
+    // Edit task
+    function editTask(id, oldText) {
+      const newText = prompt('Edit task:', oldText);
+      if (newText && newText !== oldText) {
+        fetch(`${API}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: newText })
+        })
+        .then(() => loadTasks());
+      }
+    }
+
+    // Initial load
+    loadTasks();
+  </script>
+</body>
+</html>

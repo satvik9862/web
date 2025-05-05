@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: aquamarine;
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        h1{
+            text-align: center;
+            font-size:2.5rem;
+            color: antiquewhite;
+            margin-top: 10%;
+        }
+        .product-grid{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-card{
+            background-color: aliceblue;
+            border-radius: 10%;
+            text-align: center;
+            padding: 20px;
+            width: 250px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover{
+            transform: scale(1.05);
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1> product details</h1>
+        <div class="product-grid" id="productgrid"></div>
+    </div>
+    <script>
+        fetch("http://localhost:3000/products")
+        .then(res=>res.json())
+        .then(products=>{
+            products.forEach(product=>{
+                const grid=document.getElementById('productgrid');
+                const card=document.createElement('div');
+                card.className='product-card';
+                card.innerHTML=`
+                  <img src="${product.image}" alt="${product.name}" />
+                        <h3>${product.name}</h3>
+                        <p>$${product.price.toFixed(2)}</p
+                `;
+                grid.appendChild(card);
+            })
+        })
+        .catch(err=>{
+            console.log("err to fetch");
+        })
+    </script>
+</body>
+</html>

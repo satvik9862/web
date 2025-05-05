@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { font-family: Arial; }
+        li { margin-bottom: 10px; }
+        input[type="text"] { width: 200px; }
+        button { margin-left: 5px; }
+      </style>
+</head>
+<body>
+    <h1>task list</h1>
+    <input type="text" id="taskInput" placeholder="add new task"/>
+    <button onclick="add()">ADD</button>
+    <ul id="taskList"></ul>
+
+<script>
+    const API='http://localhost:3000/task';
+    function load(){
+        fetch(API)
+        .then(res=>res.json())
+        .then(tasks=>{
+            const list=document.getElementById('taskList');
+            list.innerHTML='';
+            tasks.forEach(task=>{
+                const li=document.createElement('li');
+                li.innerHTML=`
+                <span>${task.text}</span>
+                <button onclick="deleteTask(${task.id})">Delelte</button>
+                <button onclick="editTask(${task.id},'${task.text}')">Edit</button>
+                `
+                list.appendChild(li);
+            })
+        })
+    }
+    function add(){
+        const inp=document.getElementById('taskInput');
+        const text=inp.value.trim();
+        if(!text){
+            return;
+        }
+        fetch(API,{
+            method:'POST',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify({text})
+        })
+        .then(()=>{
+            inp.value='';
+            load();
+        })
+    }
+    function deleteTask(id){
+        fetch(`${API}/${id}`, { method: 'DELETE' })
+        .then(() => load());
+    }
+    function editTask(id,old){
+        const ntext=prompt("edit text",old);
+        if(ntext){
+            fetch(`${API}/${id}`,{
+                method:'PUT',
+                headers:{'Content-type':'application/json'},
+                body:JSON.stringify({text:ntext})
+            })
+            .then(()=>load())
+        }
+    }
+    load();
+</script>
+</body>
+</html>

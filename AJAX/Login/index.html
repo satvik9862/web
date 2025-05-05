@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    /* Basic reset for body */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Container for the content */
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    /* Header style */
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    /* Table styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    /* Table header styles */
+    th {
+      background-color: #3498db;
+      color: #fff;
+      padding: 15px;
+      text-align: left;
+    }
+
+    /* Table cell styles */
+    td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    /* Alternating row colors for better readability */
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #e1f5fe;
+    }
+
+    /* Error message style */
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Registered Users</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>DOB</th>
+          <th>City</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody id="userList"></tbody>
+    </table>
+    <p class="error" id="errorMessage"></p>
+  </div>
+
+  <script>
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:3000/api/users', true);
+  
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        const users = JSON.parse(xhr.responseText);
+        const tbody = document.getElementById('userList');
+  
+        if (users.length === 0) {
+          document.getElementById('errorMessage').textContent = "No users registered.";
+        } else {
+          users.forEach(user => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${user.name}</td>
+              <td>${user.email}</td>
+              <td>${user.mobile}</td>
+              <td>${user.dob}</td>
+              <td>${user.city}</td>
+              <td>${user.address}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+      } else {
+        document.getElementById('errorMessage').textContent = "There was an error fetching the users.";
+      }
+    };
+  
+    xhr.onerror = function () {
+      document.getElementById('errorMessage').textContent = "Network error occurred while fetching users.";
+    };
+  
+    xhr.send();
+  </script>
+  
+  
+</body>
+</html>

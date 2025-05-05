@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>weather details</h1>
+    <input type="text" id="inp" placeholder="enter city name"/>
+    <button onclick="getweather()">Submit</button>
+
+    <div id="res"></div>
+
+    <script>
+        function getweather(){
+            const city=document.getElementById('inp').value.trim().toLowerCase();
+            const result=document.getElementById('res');
+            result.innerHTML='';
+            fetch('weather.json')
+            .then(res=>res.json())
+            .then(data=>{
+                if(data[city]){
+                    const info = data[city];
+            result.innerHTML = `
+              <strong>City:</strong> ${city.charAt(0).toUpperCase() + city.slice(1)}<br>
+              <strong>Temperature:</strong> ${info.temperature}<br>
+              <strong>Humidity:</strong> ${info.humidity}<br>
+              <strong>Condition:</strong> ${info.condition}
+            `;
+                }else{
+                    result.innerHTML = `<span class="error">No weather data found for "${city}".</span>`;
+                }
+            })
+            .catch(err => {
+          console.error(err);
+          result.innerHTML = `<span class="error">Failed to load weather data.</span>`;
+        });
+        }
+    </script>
+</body>
+</html>

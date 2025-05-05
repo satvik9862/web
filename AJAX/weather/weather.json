@@ -1,0 +1,8 @@
+{
+    "new york": { "temperature": "22°C", "humidity": "60%", "condition": "Cloudy" },
+    "mumbai": { "temperature": "30°C", "humidity": "70%", "condition": "Sunny" },
+    "delhi": { "temperature": "35°C", "humidity": "45%", "condition": "Clear" },
+    "london": { "temperature": "18°C", "humidity": "80%", "condition": "Rainy" },
+    "tokyo": { "temperature": "25°C", "humidity": "65%", "condition": "Partly Cloudy" }
+  }
+  
